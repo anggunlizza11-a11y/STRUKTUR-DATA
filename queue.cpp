@@ -1,56 +1,25 @@
 #include <iostream>
+#include <queue>
 using namespace std;
 
-struct Node{
-    int data;
-    Node* next;
-};
-Node* front = NULL;
-Node* rear = NULL;
+int main() {
+    system("cls");
 
-void enqueue(int data){
-    Node* baru = new Node;
-    baru->data = data;
-    baru->next = NULL;
+    queue<float> antrean;
+    float input;
 
-    if(rear == NULL){
-        front = rear = baru;
-    }else{
-        rear->next = baru;
-        rear = baru;
+    while (cin >> input) {
+        antrean.push(input);
     }
-}
-void dequeue(){
-    if(front == NULL){
-        cout << "Queue kosong" << endl;
-    }else{
-        Node* hapus = front;
-        front = front->next;
 
-        if(front == NULL){
-            rear = NULL;
-        }
+    do {
+        cout << antrean.front() << " ";
+        antrean.pop();
+    } while (antrean.size() != 0);
 
-        delete hapus;
-    }
-}
-void tampil(){
-    Node* bantu = front;
-
-    cout << "Queue: ";
-    while(bantu != NULL){
-        cout << bantu->data << " ";
-        bantu = bantu->next;
-    }
     cout << endl;
-}
-int main(){
-    enqueue(10);
-    enqueue(20);
-    enqueue(30);
 
-    tampil();
-    dequeue();
-    tampil();
+    system("pause");
+
     return 0;
 }
